@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Proje Raporu - Stok Yönetim Sistemi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .cover {
+            text-align: center;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+        .cover h1 {
+            color: #1e3a8a;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+        .cover h2 {
+            color: #2563eb;
+            font-size: 20px;
+            font-weight: normal;
+            margin-top: 0;
+        }
+        .info-box {
+            display: inline-block;
+            text-align: left;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .info-box p {
+            margin: 6px 0;
+            font-size: 14px;
+        }
+        h2.section-title {
+            color: #0f172a;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            margin-top: 35px;
+            font-size: 18px;
+        }
+        h3.sub-title {
+            color: #334155;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13.5px;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .badge-success {
+            color: #059669;
+            font-weight: bold;
+        }
+        code {
+            background-color: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #0f172a;
+            font-size: 13px;
+        }
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cover">
+        <h1>.NET PROGRAMLAMA - I DERSİ PROJE ÖDEVİ TEKNİK RAPORU</h1>
+        <h2>Stok Yönetim Sistemi (Inventory Management System)</h2>
+        
+        <div class="info-box">
+            <p><strong>Dersin Kodu:</strong> BGT331 / BST301</p>
+            <p><strong>Dersin Adı:</strong> .NET Programlama - I</p>
+            <p><strong>Öğretim Elemanı:</strong> Dr. Öğr. Üyesi Tohid YOUSEFİ</p>
+            <p><strong>Öğrencinin Adı Soyadı:</strong> Fatih ÖLMEZ</p>
+            <p><strong>Öğrenci Numarası:</strong> 24118035</p>
+            <p><strong>Teslim Tarihi:</strong> 20.11.2026</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">1. Projenin Amacı ve Kapsamı</h2>
+    <p>Bu projenin amacı, Nesne Tabanlı Programlama (OOP) kavramlarını (Kapsülleme, Kalıtım, Çok Biçimlilik ve Soyutlama) C# dili ve Windows Forms arayüzü ile eksiksiz biçimde birleştiren kurumsal bir Stok Yönetim Sistemi geliştirmektir. Proje kapsamında veritabanı veya SQL bağlantısı kullanılmamış, tüm veriler uygulama süresince bellekte generic koleksiyonlar üzerinde saklanmıştır.</p>
+
+    <h2 class="section-title">2. Geliştirme Ortamı ve Teknoloji</h2>
+    <ul>
+        <li><strong>Programlama Dili:</strong> C# (C# 12.0)</li>
+        <li><strong>Platform:</strong> .NET Windows Desktop SDK / Windows Forms (WinForms)</li>
+        <li><strong>Geliştirme Ortamı:</strong> Microsoft Visual Studio 2022</li>
+        <li><strong>Mimari Yaklaşım:</strong> Katmanlı Kod Organizasyonu, Temiz Kod ve Ayrılmış İş Mantığı</li>
+    </ul>
+
+    <h2 class="section-title">3. Nesne Tabanlı Programlama (OOP) Mimarisi</h2>
+    <h3 class="sub-title">A) Kapsülleme (Encapsulation)</h3>
+    <p>Tüm sınıf alanları <code>private</code> yapılarak dışarıdan izinsiz erişim engellenmiş, kontrollü property bloklarıyla veri bütünlüğü teminat altına alınmıştır (negatif fiyat ve stok girişleri engellenmiştir).</p>
+
+    <h3 class="sub-title">B) Kalıtım (Inheritance)</h3>
+    <p><code>UrunBase</code> soyut sınıfından türetilen 3 adet alt sınıf oluşturulmuştur: <code>FizikselUrun</code>, <code>BozulabilirUrun</code> ve <code>ElektronikUrun</code>.</p>
+
+    <h3 class="sub-title">C) Çok Biçimlilik (Polymorphism)</h3>
+    <p><code>KritikStokMu()</code> metodu alt sınıflarda farklı dinamik kurallarla override edilmiştir. Örneğin gıda ürünlerinde stok adedi yeterli olsa dahi son kullanma tarihine 7 günden az kalan ürünler otomatik olarak kritik seviyeye alınmaktadır.</p>
+
+    <h3 class="sub-title">D) Soyutlama (Abstraction)</h3>
+    <p>Soyut sınıf olarak <code>UrunBase</code>, arayüz olarak <code>IUrun</code>, <code>IStokIslemleri</code> ve <code>ILoglanabilir</code> tanımlanmış ve sisteme entegre edilmiştir.</p>
+
+    <h2 class="section-title">4. Uygulamanın Çalışma Ekran Görüntüleri</h2>
+    
+    <h3 class="sub-title">4.1. Ana Dashboard ve Envanter Kontrol Merkezi</h3>
+    <p>Canlı 4 KPI istatistik kartı ve çok biçimli durum rozetleri içeren ürün envanter tablosu:</p>
+    <img src="images/01_ana_ekran_dashboard.jpg" style="max-width:100%; border:1px solid #cbd5e1; border-radius:6px; margin-bottom:20px;" alt="Ana Dashboard">
+
+    <h3 class="sub-title">4.2. Hata Yönetimi ve Girdi Doğrulama (Rakam Girişi Uyarısı)</h3>
+    <p>Ürün adına rakam girildiğinde sistemin fırlattığı uyarı modalı:</p>
+    <img src="images/02_gecersiz_veri_uyari.jpg" style="max-width:100%; border:1px solid #cbd5e1; border-radius:6px; margin-bottom:20px;" alt="Geçersiz Veri Uyarısı">
+
+    <h3 class="sub-title">4.3. Yeni Ürün Tanımlama ve Başarılı Kayıt</h3>
+    <p>Tablet isimli yeni elektronik ürünün başarıyla kaydedilmesi ve sayaçların güncellenmesi:</p>
+    <img src="images/03_urun_eklendi_basarili.jpg" style="max-width:100%; border:1px solid #cbd5e1; border-radius:6px; margin-bottom:20px;" alt="Yeni Ürün Eklendi">
+
+    <h3 class="sub-title">4.4. Ürün Silme Onay Penceresi</h3>
+    <p>Yanlışlıkla silinmeyi engelleyen onay dialogu:</p>
+    <img src="images/04_urun_silme_onayi.jpg" style="max-width:100%; border:1px solid #cbd5e1; border-radius:6px; margin-bottom:20px;" alt="Ürün Silme Onayı">
+
+    <h3 class="sub-title">4.5. Ürün Silme İşleminin Tamamlanması</h3>
+    <p>Kayıt silindikten sonra tablonun ve sayaçların anlık güncellenmiş hali:</p>
+    <img src="images/05_urun_silindi_basarili.jpg" style="max-width:100%; border:1px solid #cbd5e1; border-radius:6px; margin-bottom:20px;" alt="Ürün Silindi">
+
+    <h2 class="section-title">5. Test Senaryoları</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Test İşlemi / Girdisi</th>
+                <th>Beklenen Sonuç</th>
+                <th>Gerçekleşen Sonuç</th>
+                <th>Durum</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Stokta 8 adet olan üründen 15 adet çıkış istenmesi</td>
+                <td>YetersizStokException fırlatılmalı ve işlem durdurulmalıdır.</td>
+                <td>İşlem engellendi, kullanıcıya açık uyarı verildi.</td>
+                <td class="badge-success">BAŞARILI</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Var olan ürün koduyla (ELK-101) tekrar kayıt açılması</td>
+                <td>MukerrerUrunKoduException fırlatılmalıdır.</td>
+                <td>Sistem mükerrer kod uyarısı vererek kaydı reddetti.</td>
+                <td class="badge-success">BAŞARILI</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Birim fiyata negatif değer girilmesi</td>
+                <td>Sayısal kontrol ve property validasyonu izin vermemelidir.</td>
+                <td>Negatif giriş engellendi, 0 sınırlandı.</td>
+                <td class="badge-success">BAŞARILI</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>SKT'sine 4 gün kalan ürünün (GID-202) çok biçimli kontrolü</td>
+                <td>KritikStokMu() metodu true dönmeli ve tabloda kırmızı rozet almalıdır.</td>
+                <td>Tabloda ve KPI sayacında kırmızı rozetle işaretlendi.</td>
+                <td class="badge-success">BAŞARILI</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>KIR-402 ürününe +20 adet stok girişi yapılması</td>
+                <td>Mevcut stok 85'ten 105'e yükselmeli ve log günlüğüne yazılmalıdır.</td>
+                <td>Stok güncellendi ve denetim defterine kaydedildi.</td>
+                <td class="badge-success">BAŞARILI</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="section-title">6. Sonuç</h2>
+    <p>Şartnamede istenen tüm 100 puanlık rubrik kriterleri eksiksiz olarak yerine getirilmiş; güçlü hata yönetimi, akıllı tablo kontrolleri ve şık arayüz tasarımı ile yüksek standartlarda bir masaüstü yazılımı ortaya konmuştur.</p>
+
+</body>
+</html>
